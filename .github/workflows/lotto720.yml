@@ -1,0 +1,28 @@
+name: 연금복권720+ 번호 생성 & 텔레그램 알림
+
+on:
+  # 매주 목요일 21:30 KST = 12:30 UTC
+  schedule:
+    - cron: '30 12 * * 4'
+
+  # 수동 실행도 가능
+  workflow_dispatch:
+
+jobs:
+  generate-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 번호 생성 & 텔레그램 전송
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python generate_and_notify.py

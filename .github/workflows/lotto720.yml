@@ -1,9 +1,9 @@
 name: 연금복권720+ 번호 생성 & 텔레그램 알림
 
 on:
-  # 매주 목요일 21:30 KST = 12:30 UTC
+  # 매주 목요일 22:00 KST = 13:00 UTC
   schedule:
-    - cron: '30 12 * * 4'
+    - cron: '0 13 * * 4'
 
   # 수동 실행도 가능
   workflow_dispatch:
